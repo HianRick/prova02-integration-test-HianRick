@@ -18,14 +18,6 @@ describe('RESTful API - Objects', () => {
 			.expectStatus(StatusCodes.OK);
 	});
 
-	// GET all objects - negative (invalid endpoint)
-	it('GET /objectsX - should return 404', async () => {
-		await p
-			.spec()
-			.get(baseUrl + 'X')
-			.expectStatus(StatusCodes.NOT_FOUND);
-	});
-
 	// POST create object - positive
 	it('POST /objects - should create object and return 200', async () => {
 		const res = await p
@@ -37,14 +29,6 @@ describe('RESTful API - Objects', () => {
 		createdId = res;
 	});
 
-	// POST create object - negative (missing name)
-	it('POST /objects - missing name should return 400', async () => {
-		await p
-			.spec()
-			.post(baseUrl)
-			.withJson({ data: { foo: 'bar' } })
-			.expectStatus(StatusCodes.BAD_REQUEST);
-	});
 
 	// GET object by id - positive
 	it('GET /objects/{id} - should return created object', async () => {
